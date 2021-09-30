@@ -1,0 +1,32 @@
+{
+  "name": "reservation",
+  "version": "1.0.0",
+  "description": "This is a website where people who are going to be married will go to know the available sector and the date, so that they can book the date for their civil marriage, and the sector will approve or reject the request according to the numbers they want.",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "dev-start": "babel-node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Donnella14/reservation.git"
+  },
+  "author": "nmm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Donnella14/reservation/issues"
+  },
+  "homepage": "https://github.com/Donnella14/reservation#readme",
+  "dependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.12.10",
+    "babel-core": "^6.26.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
