@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 
 const AppointmentSchema=new mongoose.Schema({
 
-NormalUserId:{
+NormalUser:{
     type:mongoose.Schema.ObjectId,
     ref:"User"
 },
-SchedulerId:{
+Scheduler:{
     type:mongoose.Schema.ObjectId,
     ref:"Scheduler"
 },
@@ -16,7 +16,7 @@ partnerName:{
     type:String,
     required:[true,"firstname is required"]
 },
-nationalId:{
+partnerNationalId:{
     type:String,
     required:true,
     unique:true
@@ -35,12 +35,12 @@ status: {
 
 });
 
-SessionSchema.pre(/^find/,function(next) {
+AppointmentSchema.pre(/^find/,function(next) {
     this.populate({
-        path:"NormalUserId",
-        select:"firstName lastName email phone gender"
+        path:"NormalUser",
+        select:"firstName lastName email phone gender nationalId "
     }).populate({
-        path:"SchedulerId",
+        path:"Scheduler",
         select:"Services date timeToStart timeToEnd"
     });
     next();

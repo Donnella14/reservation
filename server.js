@@ -2,17 +2,21 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./server/routes/userRoute";
-import sectorRoute from "./server/routes/sectorRoute";
+import sectorRouter from "./server/routes/sectorRoute";
+import schedulerRouter from "./server/routes/schedulerRoute";
 import bodyParser from 'body-parser';
-
+import appointmentRouter from "./server/routes/appointmentRoute";
 import cors from "cors";
+
 dotenv.config({path:'./.env'});
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/freemantor/v1/user", userRouter);
-app.use("/freemantor/v1/sector", sectorRoute);
+app.use("/freemantor/v1/sector", sectorRouter);
+app.use("/freemantor/v1/scheduler", schedulerRouter);
+app.use("/freemantor/v1/appointment", appointmentRouter);
 
 
 app.use('/',(req,res)=>{

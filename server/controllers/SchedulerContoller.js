@@ -1,9 +1,9 @@
 import schedulerInfo from "../models/Scheduler";
 
 
-class SchedulerController{
+class SchedulerUserController{
     static createScheduler = async(req,res)=>{
-        req.body.SectorId=req.Sector.id;
+        //req.body.sector=req.sector.id;
         const session = await schedulerInfo.create(req.body);
         if(!session){
             return res.status(400).json({
@@ -86,4 +86,4 @@ class SchedulerController{
     }
 }
 
-export default SchedulerController;
+export default SchedulerUserController;

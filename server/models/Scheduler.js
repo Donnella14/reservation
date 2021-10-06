@@ -2,19 +2,19 @@ import mongoose from "mongoose";
 
 
 const schedulerSchema=new mongoose.Schema({
-    Services:String,
-  SectorId:{
+    services:String,
+  sector:{
         type:mongoose.Schema.ObjectId,
         ref:"Sector"
     },
    
     date: Date,
-    timeToStart: Date,
-    timeToEnd: Date,
+    timeToStart: String,
+    timeToEnd: String,
     status: {
             type: String,
-            enum: ["Available", "Booked"],
-            default: "pending"
+            enum: ["Available", "Booked","Pending"],
+            default: "Pending"
         }
     });
     

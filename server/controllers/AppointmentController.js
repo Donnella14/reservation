@@ -3,8 +3,8 @@ import appointmentInfo from "../models/Appointments";
 
 class AppointmentController{
     static createAppointment = async(req,res)=>{
-        req.body.SchedulerId=req.Scheduler.id;
-        req.body.NormalUserId=req.NormalUser.id;
+        //req.body.SchedulerId=req.Scheduler.id;
+        //req.body.NormalUserId=req.NormalUser.id;
         const appointment = await appointmentInfo.create(req.body);
         if(!appointment){
             return res.status(400).json({

@@ -14,11 +14,11 @@ return res.status(404).json({
 }
 
 static CheckAge = (req, res, next) =>{
-    if(req.body.age>=21){
-          return res.status(404).json({
-              status:404,
-              message:"age should be greater or equal to twenty one  years old!"
-          })
+    if (req.body.age < 21) {
+        return res.status(404).json({
+            status: 404,
+            message: "You are under age. no Access"
+        })
     }
     return next();
 }
