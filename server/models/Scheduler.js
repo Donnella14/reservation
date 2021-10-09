@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 
 const schedulerSchema=new mongoose.Schema({
+
     services:String,
   sector:{
         type:mongoose.Schema.ObjectId,
@@ -9,6 +10,7 @@ const schedulerSchema=new mongoose.Schema({
     },
    
     date: Date,
+
     timeToStart: String,
     timeToEnd: String,
     status: {
@@ -27,4 +29,5 @@ const schedulerSchema=new mongoose.Schema({
         
     })
  const schedulerInfo = mongoose.model("Scheduler", schedulerSchema);
+
  export default schedulerInfo;

@@ -87,6 +87,23 @@ static getAllUsers = async(req,res)=>{
 }
 
 
+static getAllSector = async(req,res)=>{
+    const sectors = await sectorInfo.find({role: "Employer"});
+
+    if (!sectors) {
+        return res.status(404).json({
+            status:404,
+            message:"failed to get all sector!"
+        })
+        
+    }
+
+    return res.status(200).json({
+        status:200,
+        message:"success!",
+        data:sectors
+    })
+}
 static findOneUser = async(req,res)=>{
     const user = await userInfo.findById(req.params.id);
 

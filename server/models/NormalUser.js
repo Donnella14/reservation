@@ -8,9 +8,11 @@ firstName:{
 
 },
 lastName:String,
+
 email: {
     type: String,
     required: [true, "email is required"]
+
 },
 nationalId:{
     type:String,
@@ -34,6 +36,7 @@ age:Number,
 role:{
     type:String,
     enum:["admin","user"],
+
     default:"user"
 },
 status:{
@@ -51,4 +54,5 @@ registeredOn: {
 
 
  const userInfo = mongoose.model("User", userSchema);
+
  export default userInfo;

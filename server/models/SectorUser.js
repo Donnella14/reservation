@@ -10,6 +10,7 @@ sectorName:{
 email: {
     type: String,
     required: [true, "email is required"]
+
 },
 
 password:{
@@ -23,6 +24,7 @@ phone:{
 
 role:{
     type:String,
+
     enum:["admin","Employer"],
     default:"Employer"
 },
@@ -38,4 +40,5 @@ status:{
 
 
  const sectorInfo = mongoose.model("Sector", sectorSchema);
+
  export default sectorInfo;
