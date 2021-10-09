@@ -80,7 +80,15 @@ const DashboardLayout =({children})=> {
             <Link onClick={handleClick} to="/about">About Us</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to="/dashmentors">   Mentors      </Link>
+                <Link to="/dashmentors">   All Sectors      </Link>
+           
+            </Menu.Item>
+            <Menu.Item key="6" icon={<VideoCameraOutlined />}>
+                <Link to="/">   All Appointments      </Link>
+           
+            </Menu.Item>
+            <Menu.Item key="7" icon={<VideoCameraOutlined />}>
+                <Link to="/">   All Scheduler      </Link>
            
             </Menu.Item>
             <Menu.Item key="3" icon={<UploadOutlined />}>
