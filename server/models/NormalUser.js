@@ -35,7 +35,7 @@ gender:{
 age:Number,
 role:{
     type:String,
-    enum:["admin","user"],
+    enum:["admin","user","Employee"],
 
     default:"user"
 },

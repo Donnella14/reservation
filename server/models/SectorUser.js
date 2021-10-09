@@ -13,25 +13,9 @@ email: {
 
 },
 
-password:{
-    type:String,
-    default:"12345@@@@"
-},
 phone:{
     type:String
     
-},
-
-role:{
-    type:String,
-
-    enum:["admin","Employer"],
-    default:"Employer"
-},
-status:{
-    type:String,
-    enum:["active","inactive"],
-    default:"active"
 },
 
   address: {type:String,
