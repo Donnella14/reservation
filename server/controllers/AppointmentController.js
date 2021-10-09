@@ -1,28 +1,29 @@
-import sectorInfo from "../models/SectorUser";
+import appointmentInfo from "../models/Appointments";
 
 
-class SectorUserController{
-    static createSector = async(req,res)=>{
-        
-        const session = await sectorInfo.create(req.body);
-        if(!session){
+class AppointmentController{
+    static createAppointment = async(req,res)=>{
+        //req.body.SchedulerId=req.Scheduler.id;
+        //req.body.NormalUserId=req.NormalUser.id;
+        const appointment = await appointmentInfo.create(req.body);
+        if(!appointment){
             return res.status(400).json({
                 status:400,
-                message:"failed to register a sector"
+                message:"failed to register a scheduler"
             })
         
         }
         return res.status(200).json({
             status:200,
             message:"success",
-            data:session
+            data:appointment
         })
     }
     
-    static getAllSector = async(req,res)=>{
-        const sectors = await sectorInfo.find();
+    static getAllAppointment = async(req,res)=>{
+        const appointments = await appointmentInfo.find();
     
-        if (!sectors) {
+        if (!appointments) {
             return res.status(404).json({
                 status:404,
                 message:"failed to get all sector!"
@@ -33,12 +34,12 @@ class SectorUserController{
         return res.status(200).json({
             status:200,
             message:"success!",
-            data:sectors
+            data:appointments
         })
     }
     static getOne = async(req,res)=>{
-        const session = await sectorInfo.findById(req.params.id);
-        if(!session){
+        const appointment = await appointmentInfo.findById(req.params.id);
+        if(!appointment){
             return res.status(400).json({
                 status:400,
                 message:"failed to get that user"
@@ -48,11 +49,11 @@ class SectorUserController{
         return res.status(200).json({
             status:200,
             message:"success to get the session",
-            data:session
+            data:appointment
         })
     }
-    static updateSector = async(req,res)=>{
-        const update = await sectorInfo.findByIdAndUpdate(req.params.id,req.body);
+    static updateAppointment = async(req,res)=>{
+        const update = await appointmentInfo.findByIdAndUpdate(req.params.id,req.body);
         if(!update){
             return res.status(400).json({
                 status:400,
@@ -60,16 +61,16 @@ class SectorUserController{
             })
         
         }
-        const updated = await sectorInfo.findById(req.params.id);
+        const updated = await schedulerInfo.findById(req.params.id);
         return res.status(200).json({
             status:200,
             message:"successfully updated",
             data:updated
         })
     }
-    static deleteSector = async(req,res)=>{
-        const session = await sectorInfo.findByIdAndDelete(req.params.id);
-        if(!session){
+    static deleteAppointment = async(req,res)=>{
+        const appointment = await appointmentInfo.findByIdAndDelete(req.params.id);
+        if(!appointment){
             return res.status(400).json({
                 status:400,
                 message:"failed to delete"
@@ -80,11 +81,10 @@ class SectorUserController{
         return res.status(200).json({
             status:200,
             message:"Success to delete this session.",
-            data:session
+            data:appointment
             //data:deleted
         })
     }
 }
 
-export default SectorUserController;
-
+export default AppointmentController;

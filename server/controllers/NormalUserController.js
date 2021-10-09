@@ -1,3 +1,4 @@
+
 import userInfo from "../models/NormalUser";
 import sectorInfo from "../models/SectorUser";
 import TokenAuth from "../helpers/TokenAuth";
@@ -84,6 +85,7 @@ static getAllUsers = async(req,res)=>{
         data:users
     })
 }
+
 
 static getAllSector = async(req,res)=>{
     const sectors = await sectorInfo.find({role: "Employer"});
@@ -175,7 +177,6 @@ const update = await userInfo.findById(req.params.id);
     })
 }
 
-
-
 }
+
 export default NormalUserController;

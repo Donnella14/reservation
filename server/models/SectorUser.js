@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
+
 const sectorSchema=new mongoose.Schema({
 sectorName:{
     type:String,
-    required:[true,"firstname is required"]
+    required:[true,"sectorname is required"]
 
 },
-email:{
-    type:String,
-    required:true,
-    unique:true,
-    validate: [validator.isEmail, "please provide"],
+email: {
+    type: String,
+    required: [true, "email is required"]
+
 },
 
 password:{
@@ -24,11 +24,10 @@ phone:{
 
 role:{
     type:String,
-    enum:["admin","mentor","user"],
-    default:"user"
-},
 
-   
+    enum:["admin","Employer"],
+    default:"Employer"
+},
 status:{
     type:String,
     enum:["active","inactive"],
@@ -41,4 +40,5 @@ status:{
 
 
  const sectorInfo = mongoose.model("Sector", sectorSchema);
+
  export default sectorInfo;

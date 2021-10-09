@@ -2,21 +2,24 @@ import mongoose from "mongoose";
 
 
 const schedulerSchema=new mongoose.Schema({
-    Services:String,
-  SectorId:{
+
+    services:String,
+  sector:{
         type:mongoose.Schema.ObjectId,
         ref:"Sector"
     },
    
     date: Date,
-    timeToStart: Date,
-    timeToEnd: Date,
+
+    timeToStart: String,
+    timeToEnd: String,
     status: {
             type: String,
-            enum: ["pending", "approve", "decline"],
-            default: "pending"
+            enum: ["Available", "Booked","Pending"],
+            default: "Pending"
         }
     });
+    
     schedulerSchema.pre(/^find/,function(next) {
         this.populate({
             path:"sector",
@@ -26,4 +29,5 @@ const schedulerSchema=new mongoose.Schema({
         
     })
  const schedulerInfo = mongoose.model("Scheduler", schedulerSchema);
+
  export default schedulerInfo;
