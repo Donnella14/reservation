@@ -7,16 +7,20 @@ import bcrypt from "bcrypt";
 class NormalUserController{
 
     static signinUser = async (req, res) =>{
-        const {phone, password} = req.body;
+        const {email,phone, password} = req.body;
 
-        const user = await userInfo.findOne({phone: phone});
+        let user = await userInfo.findOne({$or:[{phone: phone},{email:email}]});
 
         if (!user) {
             
+            user = await sectorInfo.findOne({$or:[{phone: phone},{email:email}]});
+
+            if(!user){
             return res.status(400).json({
                 status:400,
                 message:"user not exist"
-            })
+
+            })}
         }
 
         if(bcrypt.compareSync(password,user.password)){
