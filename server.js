@@ -13,10 +13,10 @@ dotenv.config({path:'./.env'});
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/freemantor/v1/user", userRouter);
-app.use("/freemantor/v1/sector", sectorRouter);
-app.use("/freemantor/v1/scheduler", schedulerRouter);
-app.use("/freemantor/v1/appointment", appointmentRouter);
+app.use("/civil/v1/user", userRouter);
+app.use("/civil/v1/sector", sectorRouter);
+app.use("/civil/v1/scheduler", schedulerRouter);
+app.use("/civil/v1/appointment", appointmentRouter);
 
 
 app.use('/',(req,res)=>{
