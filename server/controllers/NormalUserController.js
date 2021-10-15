@@ -181,6 +181,41 @@ const update = await userInfo.findById(req.params.id);
     })
 }
 
-}
+
+
+static UpdateOneUserRole = async(req,res)=>{  
+    const data = await userInfo.findById(req.params.id);
+    let role;
+    
+    if (data.role =="user") {
+        role = "Employee";
+    } else {
+        role = "user";
+    }
+    
+    
+    
+        const user = await userInfo.findByIdAndUpdate(req.params.id, {role: role});
+    
+        if (!user) {
+            return res.status(404).json({
+                status:404,
+                message:"failed to update  user!"
+            })
+            
+        }
+    const update = await userInfo.findById(req.params.id);
+        return res.status(200).json({
+            status:200,
+            message:"woow!succesfully updated role!",
+            data:update
+    
+        })
+    }
+    
+    
+    }
+    
+
 
 export default NormalUserController;
