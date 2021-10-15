@@ -13,7 +13,7 @@ userRouter.delete("/:id",Validator.checkId(),Validator.validateInput,NormalUserC
 userRouter.get("/all",verifyToken,verifyAccess("admin"),NormalUserController.getAllUsers);
 userRouter.get("/:id",Validator.checkId(),Validator.validateInput,NormalUserController.findOneUser);
 userRouter.patch("/:id",Validator.checkId(),Validator.validateInput, NormalUserController.UpdateUser);
-userRouter.patch("/:id/role",verifyToken,verifyAccess("admin"),UserController.UpdateOneUserRole);
+userRouter.patch("/:id/role",verifyToken,verifyAccess("admin"),NormalUserController.UpdateOneUserRole);
 
 export default userRouter;
 
