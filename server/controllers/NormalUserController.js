@@ -39,12 +39,12 @@ class NormalUserController{
             })
         }
 
-        return res.status(404).json({
+      else{  return res.status(404).json({
             status: 404,
             message: "Password is incorrect, Please try again.."
 
         })
-
+    }
     }
 //signup
 
