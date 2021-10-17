@@ -13,11 +13,7 @@ const schedulerSchema=new mongoose.Schema({
 
     timeToStart: String,
     timeToEnd: String,
-    status: {
-            type: String,
-            enum: ["Available", "Booked","Pending"],
-            default: "Pending"
-        }
+   
     });
     
     schedulerSchema.pre(/^find/,function(next) {
