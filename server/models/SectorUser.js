@@ -7,6 +7,11 @@ sectorName:{
     required:[true,"sectorname is required"]
 
 },
+
+employee:{
+    type:mongoose.Schema.ObjectId,
+    ref:"User"
+},
 email: {
     type: String,
     required: [true, "email is required"]
@@ -22,7 +27,14 @@ phone:{
     default:"Rwanda"},
 });
 
-
+sectorSchema.pre(/^find/,function(next) {
+    this.populate({
+        path:"employee",
+        select:"firstName lastName email phone gender nationalId "
+    });
+    next();
+        
+})
  const sectorInfo = mongoose.model("Sector", sectorSchema);
 
  export default sectorInfo;

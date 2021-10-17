@@ -7,6 +7,11 @@ NormalUser:{
     type:mongoose.Schema.ObjectId,
     ref:"User"
 },
+Employee:{
+    type:mongoose.Schema.ObjectId,
+    ref:"Employee"
+},
+
 Scheduler:{
     type:mongoose.Schema.ObjectId,
     ref:"Scheduler"
@@ -39,9 +44,13 @@ AppointmentSchema.pre(/^find/,function(next) {
     this.populate({
         path:"NormalUser",
         select:"firstName lastName email phone gender nationalId "
+
+    }).populate({
+        path:"Employee",
+        select:"firstName lastName email phone"
     }).populate({
         path:"Scheduler",
-        select:"Services date timeToStart timeToEnd"
+        select:"services date timeToStart timeToEnd"
     });
     next();
     

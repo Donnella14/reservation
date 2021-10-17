@@ -25,6 +25,7 @@ static newAccountRules(){
              check("gender","please your gender is not valid").isIn(['Male','Female']),
              check("phone","please your phone number  is not valid").isMobilePhone(),
              check("age","please your age should be integer").isInt(),
+             check("nationalId","your nationalId should be in 16 digit").isString(),
              //check("password","please your password must be strong").isStrongPassword()
 
 

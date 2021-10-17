@@ -28,6 +28,8 @@ class NormalUserController{
             const token = TokenAuth.tokenGenerator({
                 id: user._id,
                 phone: user.phone,
+                firstName: user.firstName,
+                lastName:user.lastName,
                 status: user.status,
                 role: user.role
             })
