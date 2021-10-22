@@ -1,10 +1,10 @@
 import appointmentInfo from "../models/Appointments";
+import userInfo from "../models/NormalUser";
 
 
 class AppointmentController{
     static createAppointment = async(req,res)=>{
-        //req.body.SchedulerId=req.Scheduler.id;
-        //req.body.NormalUserId=req.NormalUser.id;
+      
         const appointment = await appointmentInfo.create(req.body);
         if(!appointment){
             return res.status(400).json({
@@ -85,6 +85,48 @@ class AppointmentController{
             //data:deleted
         })
     }
+
+    static declineOneAppointment = async(req,res)=>{  
+
+        const session = await appointmentInfo.findByIdAndUpdate(req.params.id, {status:"decline"});
+    
+        if (!session) {
+            return res.status(404).json({
+                status:404,
+                message:"failed to update  session!"
+            })
+            
+        }
+    const update = await appointmentInfo.findById(req.params.id);
+        return res.status(200).json({
+            status:200,
+            message:"woow!succesfully updated!",
+            data:update
+    
+        })
+    }
+    
+    static acceptOneAppointment = async(req,res)=>{  
+    
+        const session = await appointmentInfo.findByIdAndUpdate(req.params.id, {status:"approve"});
+    
+        if (!session) {
+            return res.status(404).json({
+                status:404,
+                message:"failed to update  session!"
+            })
+            
+        }
+    const update = await appointmentInfo.findById(req.params.id);
+        return res.status(200).json({
+            status:200,
+            message:"woow!succesfully updated!",
+            data:update
+    
+        })
+    }
+
+
 }
 
 export default AppointmentController;

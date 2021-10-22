@@ -2,16 +2,11 @@ import mongoose from "mongoose";
 
 
 const AppointmentSchema=new mongoose.Schema({
-
-NormalUser:{
-    type:mongoose.Schema.ObjectId,
-    ref:"User"
-},
-Employee:{
-    type:mongoose.Schema.ObjectId,
-    ref:"Employee"
-},
-
+    
+    sector: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Sector"
+    },
 Scheduler:{
     type:mongoose.Schema.ObjectId,
     ref:"Scheduler"
@@ -42,16 +37,13 @@ status: {
 
 AppointmentSchema.pre(/^find/,function(next) {
     this.populate({
-        path:"NormalUser",
-        select:"firstName lastName email phone gender nationalId "
-
-    }).populate({
-        path:"Employee",
-        select:"firstName lastName email phone"
-    }).populate({
         path:"Scheduler",
-        select:"services date timeToStart timeToEnd"
-    });
+        select:"services date timeToStart timeToEnd status"
+    }).populate({
+            path: "sector",
+            select: "sectorName email phone address"
+    
+        });
     next();
     
 })

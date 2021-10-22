@@ -14,5 +14,8 @@ appointmentRouter.get("/:id",verifyToken,verifyAccess("user"),Validator.checkId(
 appointmentRouter.delete("/:id",verifyToken,verifyAccess("user"),Validator.checkId(),Validator.validateInput,AppointmentController.deleteAppointment);
 
 appointmentRouter.patch("/:id",verifyToken,verifyAccess("user"),Validator.checkId(),Validator.validateInput, AppointmentController.updateAppointment);
+appointmentRouter.patch("/:id/approve" , AppointmentController.acceptOneAppointment);
+appointmentRouter.patch("/:id/decline" ,AppointmentController.declineOneAppointment);
+// appointmentRouter.get("/all/:id",AppointmentController.getAllschedulerDetails);
 
 export default appointmentRouter;

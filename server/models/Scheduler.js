@@ -1,29 +1,34 @@
 import mongoose from "mongoose";
 
 
-const schedulerSchema=new mongoose.Schema({
+const schedulerSchema = new mongoose.Schema({
 
-    services:String,
-  sector:{
-        type:mongoose.Schema.ObjectId,
-        ref:"Sector"
+    services: String,
+    sector: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Sector"
     },
-   
+
     date: Date,
 
     timeToStart: String,
     timeToEnd: String,
-   
-    });
-    
-    schedulerSchema.pre(/^find/,function(next) {
-        this.populate({
-            path:"sector",
-            select:"sectorName email phone address"
-       });
-        next();
-        
-    })
- const schedulerInfo = mongoose.model("Scheduler", schedulerSchema);
+    status: {
+        type: String,
+        enum: ["AVAILABLE", "BOOKED"],
+        default: "AVAILABLE"
+    },
+});
 
- export default schedulerInfo;
+schedulerSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: "sector",
+        select: "sectorName email phone address"
+
+    });
+    next();
+
+})
+const schedulerInfo = mongoose.model("Scheduler", schedulerSchema);
+
+export default schedulerInfo;

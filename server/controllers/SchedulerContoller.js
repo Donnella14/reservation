@@ -84,6 +84,45 @@ class SchedulerUserController{
             //data:deleted
         })
     }
+   
+    
+    static acceptOnescheduler = async(req,res)=>{  
+    
+        const session = await schedulerInfo.findByIdAndUpdate(req.params.id, {status:"BOOKED"});
+    
+        if (!session) {
+            return res.status(404).json({
+                status:404,
+                message:"failed to update  session!"
+            })
+            
+        }
+    const update = await schedulerInfo.findById(req.params.id);
+        return res.status(200).json({
+            status:200,
+            message:"woow!succesfully updated!",
+            data:update
+    
+        })
+    }
+    // static getAllUserScheduler = async (req, res)=> {
+    //     const id = req.params.id;
+    //     console.log(req.user);
+    //     const users = await schedulerInfo.find({Employee:req.user.id});
+    //     if (!users){
+    //         return res.status(404).json({
+    //             status: 404,
+    //             message: "failed to get all Sessions"
+    //         })
+    //     }
+    //     return res.status(200).json({
+    //         status: 200,
+    //         message: "success",
+    //         data:users
+    //     })
+    // }
+
+
 }
 
 export default SchedulerUserController;
