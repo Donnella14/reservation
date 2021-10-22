@@ -14,5 +14,9 @@ schedulerRouter.get("/:id",verifyToken,verifyAccess("Employee"),Validator.checkI
 schedulerRouter.delete("/:id",verifyToken,verifyAccess("Employee"),Validator.checkId(),Validator.validateInput,SchedulerUserController.deleteScheduler);
 
 schedulerRouter.patch("/:id",verifyToken,verifyAccess("Employee"),Validator.checkId(),Validator.validateInput, SchedulerUserController.updateScheduler);
+schedulerRouter.patch("/:id/BOOKED" , SchedulerUserController.acceptOnescheduler);
+// schedulerRouter.get("/all/:id",verifyToken,SchedulerUserController.getAllUserScheduler);
+
+
 
 export default schedulerRouter;

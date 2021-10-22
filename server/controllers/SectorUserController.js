@@ -84,6 +84,24 @@ class SectorUserController{
             //data:deleted
         })
     }
+
+    
+    // static getAllUserSector = async (req, res)=> {
+    //     const id = req.params.id;
+    //     console.log(req.user);
+    //     const users = await sectorInfo.find({Employee:req.user.id});
+    //     if (!users){
+    //         return res.status(404).json({
+    //             status: 404,
+    //             message: "failed to get all Sessions"
+    //         })
+    //     }
+    //     return res.status(200).json({
+    //         status: 200,
+    //         message: "success",
+    //         data:users
+    //     })
+    // }
 }
 
 export default SectorUserController;

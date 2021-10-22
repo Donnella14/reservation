@@ -14,6 +14,10 @@ sectorRouter.get("/:id",Validator.checkId(),Validator.validateInput,SectorUserCo
 sectorRouter.delete("/:id",verifyToken,verifyAccess("admin"),Validator.checkId(),Validator.validateInput,SectorUserController.deleteSector);
 
 sectorRouter.patch("/:id",verifyToken,verifyAccess("admin"),Validator.checkId(),Validator.validateInput, SectorUserController.updateSector);
+// sectorRouter.get("/all/:id",verifyToken,SectorUserController.getAllUserSector);
+
+
+
 
 export default sectorRouter;
 

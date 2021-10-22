@@ -10,10 +10,11 @@ const userRouter = express.Router();
 userRouter.post("/signup",Validator.newAccountRules(),Validator.validateInput,DataChecker.CheckAge,DataChecker.ValidateEmailDuplicate,NormalUserController.signupUser);
 userRouter.post("/signin",NormalUserController.signinUser);
 userRouter.delete("/:id",Validator.checkId(),Validator.validateInput,NormalUserController.DeleteUser);
-userRouter.get("/all",verifyToken,verifyAccess("admin"),NormalUserController.getAllUsers);
+userRouter.get("/all",NormalUserController.getAllUsers);
 userRouter.get("/:id",Validator.checkId(),Validator.validateInput,NormalUserController.findOneUser);
 userRouter.patch("/:id",Validator.checkId(),Validator.validateInput, NormalUserController.UpdateUser);
 userRouter.patch("/:id/role",verifyToken,verifyAccess("admin"),NormalUserController.UpdateOneUserRole);
+userRouter.get("/all/employees",NormalUserController.getAllEmployees)
 
 export default userRouter;
 
