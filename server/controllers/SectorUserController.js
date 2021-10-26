@@ -20,8 +20,12 @@ class SectorUserController{
     }
     
     static getAllSector = async(req,res)=>{
-        const sectors = await sectorInfo.find();
-    
+        let sectors;
+        if(req.user.role=="admin" || req.user.role=="user")
+         sectors = await sectorInfo.find();
+
+   else if(req.user.role=="Employee")
+   sectors= await sectorInfo.find({Employee:req.user.id}); 
         if (!sectors) {
             return res.status(404).json({
                 status:404,
@@ -85,23 +89,7 @@ class SectorUserController{
         })
     }
 
-    
-    // static getAllUserSector = async (req, res)=> {
-    //     const id = req.params.id;
-    //     console.log(req.user);
-    //     const users = await sectorInfo.find({Employee:req.user.id});
-    //     if (!users){
-    //         return res.status(404).json({
-    //             status: 404,
-    //             message: "failed to get all Sessions"
-    //         })
-    //     }
-    //     return res.status(200).json({
-    //         status: 200,
-    //         message: "success",
-    //         data:users
-    //     })
-    // }
+   
 }
 
 export default SectorUserController;

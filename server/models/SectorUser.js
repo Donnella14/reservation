@@ -7,10 +7,7 @@ sectorName:{
    
 
 },
-user:{
-    type:mongoose.Schema.ObjectId,
-    ref:"User"
-},
+
 Employee:{
     type:mongoose.Schema.ObjectId,
     ref:"User"
@@ -32,9 +29,6 @@ phone:{
 
 sectorSchema.pre(/^find/,function(next) {
     this.populate({
-        path:"user",
-        select:"firstName lastName email phone gender"
-    }).populate({
         path:"Employee",
         select:"firstName lastName email phone gender"
     });
