@@ -3,6 +3,8 @@ import schedulerInfo from "../models/Scheduler";
 
 class SchedulerUserController{
     static createScheduler = async(req,res)=>{
+        console.log(req.body);
+        req.body.Employee=req.user.id;
         //req.body.sector=req.sector.id;
         const session = await schedulerInfo.create(req.body);
         if(!session){
@@ -20,8 +22,11 @@ class SchedulerUserController{
     }
     
     static getAllScheduler = async(req,res)=>{
-        const sectors = await schedulerInfo.find();
-    
+        let sectors;
+        if(req.user.role=="user" || req.user.role=="admin")
+        sectors = await schedulerInfo.find();
+        else if(req.user.role=="Employee")
+    sectors= await schedulerInfo.find({Employee:req.user.id});
         if (!sectors) {
             return res.status(404).json({
                 status:404,
@@ -105,22 +110,23 @@ class SchedulerUserController{
     
         })
     }
-    // static getAllUserScheduler = async (req, res)=> {
-    //     const id = req.params.id;
-    //     console.log(req.user);
-    //     const users = await schedulerInfo.find({Employee:req.user.id});
-    //     if (!users){
-    //         return res.status(404).json({
-    //             status: 404,
-    //             message: "failed to get all Sessions"
-    //         })
-    //     }
-    //     return res.status(200).json({
-    //         status: 200,
-    //         message: "success",
-    //         data:users
-    //     })
-    // }
+    static getAllUserScheduler = async (req, res)=> {
+        const id = req.params.id;
+        console.log(req.user);
+        const users = await schedulerInfo.find({Employee:req.user.id});
+        if (!users){
+            return res.status(404).json({
+                status: 404,
+                message: "failed to get all Schedulers"
+            })
+        }
+        return res.status(200).json({
+            status: 200,
+            message: "success",
+            data:users
+        })
+    }
+    
 
 
 }

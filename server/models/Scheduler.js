@@ -8,7 +8,14 @@ const schedulerSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "Sector"
     },
-
+    user:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User"
+    },
+    Employee:{
+        type:mongoose.Schema.ObjectId,
+        ref:"User"
+    },
     date: Date,
 
     timeToStart: String,
@@ -25,7 +32,13 @@ schedulerSchema.pre(/^find/, function (next) {
         path: "sector",
         select: "sectorName email phone address"
 
-    });
+    }).populate({
+            path:"user",
+            select:"firstName lastName email phone gender"
+        }).populate({
+            path:"Employee",
+            select:"firstName lastName email phone gender"
+          });
     next();
 
 })

@@ -8,7 +8,7 @@ import verifyToken from "../middleware/verifyToken";
 
 const appointmentRouter = express.Router();
 appointmentRouter.post("/create",verifyToken,verifyAccess("user"),Validator.validateInput,DataChecker.ValidateEmailDuplicate,AppointmentController.createAppointment);
-appointmentRouter.get("/all",AppointmentController.getAllAppointment);
+appointmentRouter.get("/all",verifyToken,AppointmentController.getAllAppointment);
 appointmentRouter.get("/:id",verifyToken,verifyAccess("user"),Validator.checkId(),Validator.validateInput,AppointmentController.getOne);
 
 appointmentRouter.delete("/:id",verifyToken,verifyAccess("user"),Validator.checkId(),Validator.validateInput,AppointmentController.deleteAppointment);
@@ -16,6 +16,6 @@ appointmentRouter.delete("/:id",verifyToken,verifyAccess("user"),Validator.check
 appointmentRouter.patch("/:id",verifyToken,verifyAccess("user"),Validator.checkId(),Validator.validateInput, AppointmentController.updateAppointment);
 appointmentRouter.patch("/:id/approve" , AppointmentController.acceptOneAppointment);
 appointmentRouter.patch("/:id/decline" ,AppointmentController.declineOneAppointment);
-// appointmentRouter.get("/all/:id",AppointmentController.getAllschedulerDetails);
+//appointmentRouter.get("/all/:id",verifyToken,AppointmentController.getAllschedulerDetails);
 
 export default appointmentRouter;
