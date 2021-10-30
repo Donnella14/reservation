@@ -15,6 +15,7 @@ userRouter.get("/:id",Validator.checkId(),Validator.validateInput,NormalUserCont
 userRouter.patch("/:id",Validator.checkId(),Validator.validateInput, NormalUserController.UpdateUser);
 userRouter.patch("/:id/role",verifyToken,verifyAccess("admin"),NormalUserController.UpdateOneUserRole);
 userRouter.get("/all/employees",verifyToken,NormalUserController.getAllEmployees)
+userRouter.get("/all/user",verifyToken,verifyAccess("admin"),NormalUserController.getAllUserss)
 
 export default userRouter;
 
