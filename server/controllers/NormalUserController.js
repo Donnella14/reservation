@@ -233,6 +233,25 @@ static UpdateOneUserRole = async(req,res)=>{
         })
     }
     
+
+    static getAllUserss = async(req,res)=>{
+        const users = await userInfo.find({role: "user"});
+    
+        if (!users) {
+            return res.status(404).json({
+                status:404,
+                message:"failed to get all employee!"
+            })
+            
+        }
+    
+        return res.status(200).json({
+            status:200,
+            message:"success!",
+            data:users
+        })
+    }
+    
     }
     
 
