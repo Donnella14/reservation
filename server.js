@@ -27,7 +27,7 @@ app.use('/',(req,res)=>{
 })
 
 const port = process.env.PORT;
-const databaseUrl=process.env.DATABASE;
+const databaseUrl = process.env.DATABASE;
 
 mongoose.connect(databaseUrl,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>console.log("Databse connected succesfully")); 
 //port:4040
